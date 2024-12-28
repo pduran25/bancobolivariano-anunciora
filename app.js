@@ -1,7 +1,7 @@
 /* globals AFRAME */
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  const observer = new MutationObserver(() => {
+  //const observer = new MutationObserver(() => {
     /** ****** */
     const soundButton = document.getElementById('sound-button')
     if (soundButton) {
@@ -15,10 +15,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         soundButton.hidden = true
       })
     }
-  })
+  //})
 
   // Observa cambios en el DOM
-  observer.observe(document.body, {childList: true, subtree: true})
+  //observer.observe(document.body, {childList: true, subtree: true})
 }
 // Registro del componente
 AFRAME.registerComponent('my-named-image-target', {
