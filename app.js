@@ -1,25 +1,31 @@
 /* globals AFRAME */
 
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-  //const observer = new MutationObserver(() => {
-    /** ****** */
-    const soundButton = document.getElementById('sound-button')
+  var interval = setInterval(function () {
+    // Busca el botón de sonido
+    var soundButton = document.getElementById('sound-button');
     if (soundButton) {
-      observer.disconnect()  // Detiene la observación una vez encontrado
-      soundButton.addEventListener('click', () => {
-        const videos = document.querySelectorAll('video')
-        videos.forEach((video) => {
-          video.muted = false
-          video.play().catch(err => console.error('Error al reproducir el video:', err))
-        })
-        soundButton.hidden = true
-      })
-    }
-  //})
+      // Detiene el temporizador una vez encontrado
+      clearInterval(interval);
 
-  // Observa cambios en el DOM
-  //observer.observe(document.body, {childList: true, subtree: true})
+      // Agrega el evento al botón
+      soundButton.addEventListener('click', function () {
+        // Busca todos los videos en la página
+        var videos = document.querySelectorAll('video');
+        videos.forEach(function (video) {
+          video.muted = false; // Desactiva el mute
+          video.play().catch(function (err) {
+            console.error('Error al reproducir el video:', err);
+          });
+        });
+
+        // Oculta el botón después de activar el sonido
+        soundButton.hidden = true;
+      });
+    }
+  }, 500); // Verifica cada 500 ms si el botón está disponible
 }
+
 // Registro del componente
 AFRAME.registerComponent('my-named-image-target', {
   schema: {
